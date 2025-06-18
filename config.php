@@ -3,7 +3,7 @@
 define('DB_HOST','localhost');
 define('DB_USER','admin');
 define('DB_PASS','yourpass');
-define('DB_NAME','test_project');
+define('DB_NAME','linuxconfig');
 // Establish database connection.
 try
 {
