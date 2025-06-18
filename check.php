@@ -15,8 +15,8 @@ if ($conn -> connect_error){
     exit();
 }
 
-$username_input = $_POST['username'];
-$username_input = "sai";
+$username_input = $_POST['username'] ?? '';
+// $username_input = "sai";
 // echo $username_input;
 if (empty($username_input)){
     echo json_encode(['error' => "username cannot be empty", 'available' => false]);
@@ -27,7 +27,7 @@ if (empty($username_input)){
 $sql = "select count(*) as count from logins where username = ?";
 $stmt = $conn ->prepare($sql);
 
-$stmt-bind_param('s', $username_input);
+$stmt->bind_param('s', $username_input);
 $stmt->execute();
 $result = $stmt->get_result();
 $row = $result->fetch_assoc();
