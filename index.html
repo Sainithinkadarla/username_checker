@@ -10,8 +10,8 @@
         <h1>Username availability</h1>
 
         <form>
-            <label for="username_input">Username: </label>
-            <input type="text", id="username_input", placeholder="Enter username">
+            <label for="username_label">Username: </label>
+            <input type="text", id="username", placeholder="Enter username">
             <p id="username_error">Please enter username</p>
             <label>
             <input type="checkbox" name="checkbox" id="ajaxcheckbox">
@@ -23,7 +23,7 @@
     <div id="result"></div>
 
     <script>
-        const username_input = document.getElementById('username_input');
+        const username_input = document.getElementById('username');
         const ajaxcheckbox = document.getElementById('ajaxcheckbox');
         // const checkbox = document.getElementById('ajaxcheckbox');
         const result = document.getElementById('result');
