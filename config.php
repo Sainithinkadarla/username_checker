@@ -1,7 +1,7 @@
 <?php
 //DB Connection
 define('DB_HOST','localhost');
-define('DB_USER','root');
+define('DB_USER','admin');
 define('DB_PASS','yourpass');
 define('DB_NAME','test_project');
 // Establish database connection.
