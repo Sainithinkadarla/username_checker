@@ -84,11 +84,11 @@
                 const data = await response.json();
 
                 if (data.available){
-                    result.innerHTML = `Username "${username_input}"is available`;
+                    result.innerHTML = `Username "${username_input.text}"is available`;
                     result.color = "#155724";
                 }
                 else{
-                    result.innerHTML = `Username ${username_input} taken`;
+                    result.innerHTML = `Username ${username_input.text} taken`;
                     result.style.color = "#7221c24";
                 }
             }
