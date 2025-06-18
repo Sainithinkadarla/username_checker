@@ -1,2 +1,2 @@
-<?php $conn = new mysqli("localhost", "admin", "yourpass", "linuxconfig"); if ($conn->connect_error) { die("ERROR: Unable to connect: " . $conn->connect_error); } echo 'Connected to the database.
+<?php $conn = new mysqli("localhost", "admin", "yourpass", "test_project"); if ($conn->connect_error) { die("ERROR: Unable to connect: " . $conn->connect_error); } echo 'Connected to the database.
 '; $conn->close(); ?>
