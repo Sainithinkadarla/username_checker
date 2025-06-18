@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username availability checker</title>
+</head>
+<body>
+    <div>
+        <h1>Username availability</h1>
+
+        <form>
+            <label for="username_input">Username: </label>
+            <input type="text", id="username_input", placeholder="Enter username">
+            <p id="username_error">Please enter username</p>
+            <label>
+            <input type="checkbox" name="checkbox" id="ajaxcheckbox">
+            check username
+            </label>
+            <button type="button" id="checkbutton" disabled> Check </button>
+        </form>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        const username_input = document.getElementById('username_input');
+        const ajaxcheckbox = document.getElementById('ajaxcheckbox');
+        // const checkbox = document.getElementById('ajaxcheckbox');
+        const result = document.getElementById('result');
+        const username_error = document.getElementById("username_error");
+        const checkbutton = document.getElementById("checkbutton");
+
+        function updateButtonState()
+        {
+            const ischecked = ajaxcheckbox.checked;
+            const username = username_input.value.trim();
+            checkbutton.disabled = !(ischecked && username.length > 0 );
+        }
+
+        ajaxcheckbox.addEventListener('change', updateButtonState);
+
+        username_input.addEventListener('input', ()=>{
+
+            updateButtonState();
+            if(ajaxcheckbox.checked && username_input.value.trim().length > 0 ){
+                checkUsername();
+            }
+        });
+        ajaxcheckbox.addEventListener('change', ()=> {
+            if(ajaxcheckbox.checked && username_input.value.trim().length > 0 ){
+                checkUsername();
+            }
+        });
+        async function checkUsername()
+        {
+            const username = username_input.value.trim();
+
+            if(username === ""){
+                username_error.style.display = "block";
+                result.innerHTML = "";
+                result.style.color = '';
+            }
+            else{
+                username_error.style.display = 'none';
+            }
+
+            result.innerHTML = "checking ...";
+            result.style.color = '#333';
+
+            try{
+                const response = await fetch('check.php', {
+                    method:"POST",
+                    headers: {
+                        'Content-Type': "application/x-www-form-urlencoded"
+                    },
+                    body: `username=${encodeURIComponent(username)}`
+                });
+
+                if(!response.ok)
+                {
+                    throw new Error(`http error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (data.available){
+                    result.innerHTML = `Username "${username_input}"is available`;
+                    result.color = "#155724";
+                }
+                else{
+                    result.innerHTML = `Username ${username_input} taken`;
+                    result.style.color = "#7221c24";
+                }
+            }
+            catch(error){
+                result.innerHTML= "error cannot check";
+                result.style.color = "#856404";
+        }
+
+        }
+
+    </script>
+</body>
+</html>
