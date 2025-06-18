@@ -38,7 +38,7 @@ $response = [];
 
 if ($count > 0){
     $response["available"] = false;
-    echo "not available, taken";
+    // echo "not available, taken";
 }
 else{
     $response["available"] = true;
