@@ -16,7 +16,7 @@ if ($conn -> connect_error){
 }
 
 $username_input = $_POST['username'] ?? '';
-// $username_input = "sai";
+$username_input = "sai";
 // echo $username_input;
 if (empty($username_input)){
     echo json_encode(['error' => "username cannot be empty", 'available' => false]);
